@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+  }
+.gauge-container {
+		font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display:flex;
+}
+
+.gauge g.arc {
+	fill: steelblue;
+}
+
+.gauge g.pointer {
+	fill: #e85116;
+	stroke: #b64011;
+}
+
+.gauge g.label text {
+	text-anchor: middle;
+	font-size: 12px;
+	font-weight: bold;
+	fill: #666;
+}
+
+.gauge .tickline {
+    stroke: "black";
+    stroke-width: 1px;
+}
+.number-div {
+    text-align: center;
+}
+.number-unit {
+  display:block;
+  font-size: 12px;
+}
+.number-value {
+  font-size: 30px;
+}
