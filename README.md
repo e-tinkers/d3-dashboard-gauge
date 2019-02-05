@@ -1,10 +1,11 @@
 # D3 Dashboard Gauge
 
-D3 Dashboard Gauge is a node-RED inspired dashboard gauge build with d3js.
+D3 Dashboard Gauge is a node-RED inspired dashboard gauge build with d3js framework.
 
 [![d3 dashboard gauge demo video](https://github.com/e-tinkers/d3-dashboard-gauge/blob/master/images/d3-dashboard-gauge.png)](https://youtu.be/l8FaOCjsAY4)
+_Click the image to see YouTube video demo_
 
-## Usage
+## Quick Start
 
 Simply create an html file to include the D3 Dashboard Gauge stylesheet and javascript file. It also load d3 via cdn as dependency.
 
@@ -25,15 +26,13 @@ Simply create an html file to include the D3 Dashboard Gauge stylesheet and java
 
 The `#gauge-container` `<div>` is required as an container, especially when there are multiple gauges instances on the scren, it helps to style the gauges to be placed side-by-side. When there is more than one gauge is required, create addition `<div>` with unique id within the `#gauge-container` as you wish. The `example.js` shows two gauges placed side-by-side with different configuration.
 
-D3 Dashboard Gauge is a javascript class that can be instantiated, and it mainly consists two public methods, `Gauge.render()` and `Gauge.update()`.
-
-The usage is self-explanable as:
+D3 Dashboard Gauge is a javascript class that can be instantiated, and it mainly consists two public methods, `Gauge.render()` and `Gauge.update()`. The usage is simple, create an instance of Gauge class, render it, and whenever there is a new value, update it.
 
     const myGauge = new Gauge(configOptions);
     myGauge.render("#gauge");
     myGauge.update(updateValue);
 
-## API
+## API Documentation
 
 #### Gauge class and configuration
 D3 Dashboard Gauge is highly customizable by passing an optional configuration object when instantiating an class instance.
@@ -83,7 +82,7 @@ If a configuration object is not provided during the instantiation of the Guage 
 
 **highThreshholdColor:** The color to be used between **highThreshhold** and **maxValue**. Default is set to _#cc0000_ red.
 
-**transitionMS:** When a number is updated via the `update()` method, the change of the value is animated and transit from old value to new value. The transitionMS is used to define how long the transition time will take in milli-second. Default is _1000_ ms(1 second).
+**transitionMs:** When a number is updated via the `update()` method, the change of the value is animated and transit from old value to new value. The transitionMS is used to define how long the transition time will take in milli-second. Default is _1000_ ms(1 second).
 
 **displayUnit:** This is the string label used to display the value it represented on the display. The default is _'Value'_.
 
