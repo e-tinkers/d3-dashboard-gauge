@@ -2,7 +2,7 @@
 
 D3 Dashboard Gauge is a node-RED inspired dashboard gauge build with d3js.
 
-[![d3 dashboard gauge demo video](https://www.github.com/e-tinkers/images/d3-dashboard-gauge.png)](https://youtu.be/l8FaOCjsAY4)
+[![d3 dashboard gauge demo video](https://github.com/e-tinkers/d3-dashboard-gauge/blob/master/images/d3-dashboard-gauge.png)](https://youtu.be/l8FaOCjsAY4)
 
 ## Usage
 
@@ -110,7 +110,7 @@ You can setup how often the `update()` methold should be called by wrapping it w
 
 ## Demo
 
-Click on the image above to see the YouTube video for the demonstration or click [this link]() to see the live demonstration.
+Click on the image above to see the YouTube video demo or click [this link](https://e-tinkers.github.io/d3-dashboard-gauge/) to see the live demonstration.
 
 ## License
 This repository is licensed under MIT License.
