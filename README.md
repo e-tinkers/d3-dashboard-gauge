@@ -1,6 +1,10 @@
 # D3 Dashboard Gauge
 
-D3 Dashboard Gauge is a node-RED inspired dashboard gauge build with d3js framework.
+D3 Dashboard Gauge is a node-RED inspired dashboard gauge build with d3js framework. It is:
+ - A self-contain re-usable library;
+ - High customisable for different IoT projects and sensors;
+ - Simple API for creating, rendering and updating the data.
+ - Build with d3.js library.
 
 [![d3 dashboard gauge demo video](https://github.com/e-tinkers/d3-dashboard-gauge/blob/master/images/d3-dashboard-gauge.png)](https://youtu.be/SGOtHbBNIFU)
 
