@@ -67,7 +67,7 @@ If a configuration object is not provided during the instantiation of the Guage 
       displayUnit: 'Value'
     };
 
-[![configurable d3 dashboard gauge parameters](https://github.com/e-tinkers/d3-dashboard-gauge/blob/master/images/configurale-d3-dashboard-gauge-parameters.png)]
+![configurable d3 dashboard gauge parameters](https://github.com/e-tinkers/d3-dashboard-gauge/blob/master/images/configurale-d3-dashboard-gauge-parameters.png)
 
 The picture help to visualised all the configurable parameters.
 
