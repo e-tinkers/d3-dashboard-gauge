@@ -2,7 +2,7 @@
 
 D3 Dashboard Gauge is a node-RED inspired dashboard gauge build with d3js framework.
 
-[![d3 dashboard gauge demo video](https://github.com/e-tinkers/d3-dashboard-gauge/blob/master/images/d3-dashboard-gauge.png)](https://youtu.be/l8FaOCjsAY4)
+[![d3 dashboard gauge demo video](https://github.com/e-tinkers/d3-dashboard-gauge/blob/master/images/d3-dashboard-gauge.png)](https://youtu.be/SGOtHbBNIFU)
 _Click the image to see YouTube video demo_
 
 ## Quick Start
