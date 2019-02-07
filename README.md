@@ -67,6 +67,10 @@ If a configuration object is not provided during the instantiation of the Guage 
       displayUnit: 'Value'
     };
 
+[![configurable d3 dashboard gauge parameters](https://github.com/e-tinkers/d3-dashboard-gauge/blob/master/images/configurale-d3-dashboard-gauge-parameters.png)]
+
+The picture help to visualised all the configurable parameters.
+
 **size:** Defines the width of the gauge, excluding the margins on both sides. Default value is _200px_.
 
 **margin:** Margin add extra pixels on both sides of the gauge container so that the text of the scale can be displayed without being cut off. Default value is _10px_ on each side of the gauge container.
