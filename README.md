@@ -89,7 +89,7 @@ The picture help to visualised all the configurable parameters.
 
 **lowThreshholdColor:** Defines the color to be used for the scale range between **minValue** and **lowThreshhold**. Default color is set to a greenish color with RGB value of _#009900_.
 
-**scale:** Defines whether the display will be **'linear'** or **'log'** scale. Default is _'linear'_. 
+**scale:** Defines whether the display will be **'linear'** or **'log'** scale. Default is _'linear'_. Only log base 10 (i.e.log10(x)) is supported.
 
 **defaultColor:** This is the color to be used between **lowThreshhold** and **highThreshhold**. Default color is _#ffe500_ which is a yellowish color.
 
