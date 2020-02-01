@@ -4,7 +4,8 @@ D3 Dashboard Gauge is a node-RED inspired dashboard gauge build with d3js framew
  - A self-contain re-usable library;
  - High customisable for different IoT projects and sensors;
  - Simple API for creating, rendering and updating the data;
- - Build with d3.js library.
+ - Build with d3.js library;
+ - Support both linear and log scale.
 
 [![d3 dashboard gauge demo video](https://github.com/e-tinkers/d3-dashboard-gauge/blob/master/images/d3-dashboard-gauge.png)](https://youtu.be/SGOtHbBNIFU)
 
@@ -60,6 +61,7 @@ If a configuration object is not provided during the instantiation of the Guage 
       majorTicks : 5,
       lowThreshhold : 3,
       highThreshhold : 7,
+      scale: 'linear',
       lowThreshholdColor : '#009900',
       defaultColor : '#ffe500',
       highThreshholdColor : '#cc0000',
@@ -86,6 +88,8 @@ The picture help to visualised all the configurable parameters.
 **highThreshhold:** Defines the higher threshhold value in between the **minValue** and **maxValue**. When you change the minValue and maxValue, you are likely have to change the lowThreshhold and highThreshhold values too. The default value for highThreshhold is _7_.
 
 **lowThreshholdColor:** Defines the color to be used for the scale range between **minValue** and **lowThreshhold**. Default color is set to a greenish color with RGB value of _#009900_.
+
+**scale:** Defines whether the display will be **'linear'** or **'log'** scale. Default is _'linear'_. 
 
 **defaultColor:** This is the color to be used between **lowThreshhold** and **highThreshhold**. Default color is _#ffe500_ which is a yellowish color.
 

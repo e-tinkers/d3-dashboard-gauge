@@ -6,18 +6,23 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const powerGauge = new Gauge({
-      minValue: 20,
-      maxValue: 50,
-      lowThreshhold: 28,
-      highThreshhold: 42,
-      displayUnit: 'Degree ℃'
+      minValue: 1,
+      maxValue: 10000,
+      lowThreshhold: 300,
+      highThreshhold: 2000,
+      majorTicks:2000,
+      scale: 'log',
+      displayUnit: 'Log10(x)'
   });
   const powerGauge2 = new Gauge({
-    lowThreshhold: 6,
-    highThreshhold: 8,
+    minValue: 20,
+    maxValue: 50,
+    lowThreshhold: 28,
+    highThreshhold: 42,
     lowThreshholdColor: "#dcdcdc",
     defaultColor: "#a9a9a9",
-    highThreshholdColor: "#696969"
+    highThreshholdColor: "#696969",
+    displayUnit: 'Degree ℃'
   })
 
   powerGauge.render("#gauge");
@@ -25,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Generate a random reading every 3 seconds
   setInterval(function() {
-      powerGauge.update(Math.random()*30+20);
-      powerGauge2.update(Math.random()*10);
+      powerGauge.update(Math.random()*1000);
+      powerGauge2.update(Math.random()*30+20);
   }, 2 * 1000);
 
 });

@@ -11,6 +11,7 @@ class Gauge {
       majorTicks : 5,
       lowThreshhold : 3,
       highThreshhold : 7,
+      scale: 'linear',
       lowThreshholdColor : '#009900',
       defaultColor : '#ffe500',
       highThreshholdColor : '#cc0000',
@@ -41,9 +42,16 @@ class Gauge {
     this.maxAngle = 90,
     this.angleRange = this.maxAngle - this.minAngle;
 
-    this.scale = d3.scaleLinear()
+    if (config.scale == 'log') {
+      this.scale = d3.scaleLog()
+        .range([0,1])
+        .domain([config.minValue, config.maxValue]);
+    }
+    else {
+      this.scale = d3.scaleLinear()
       .range([0,1])
       .domain([config.minValue, config.maxValue]);
+    }
 
     const colorDomain = [config.lowThreshhold, config.highThreshhold].map(this.scale);
     const colorRange  = [
@@ -53,8 +61,13 @@ class Gauge {
     ];
     this.colorScale = d3.scaleThreshold().domain(colorDomain).range(colorRange);
 
-    this.ticks = this.scale.ticks(config.majorTicks);
-    console.log(this.ticks, config.majorTicks);
+    let ticks = config.majorTicks;
+    if (config.scale === 'log') {
+      ticks = Math.log(config.majorTicks)/Math.LN10;
+    }
+    this.ticks = this.scale.ticks(ticks);
+    // console.log(this.ticks, config.majorTicks);
+
     this.threshholds = [
         config.minValue,
         config.lowThreshhold,
