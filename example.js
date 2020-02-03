@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       maxValue: 10000,
       lowThreshhold: 300,
       highThreshhold: 2000,
-      majorTicks:2000,
+      majorTicks:5,
       scale: 'log',
       displayUnit: 'Log10(x)'
   });
