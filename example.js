@@ -6,13 +6,13 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const powerGauge = new Gauge({
-      minValue: 1,
-      maxValue: 10000,
-      lowThreshhold: 300,
-      highThreshhold: 2000,
-      majorTicks:2000,
-      scale: 'log',
-      displayUnit: 'Log10(x)'
+    minValue: 1,
+    maxValue: 10000,
+    lowThreshhold: 300,
+    highThreshhold: 2000,
+    majorTicks:2000,
+    scale: 'log',
+    displayUnit: 'Log10(x)'
   });
   const powerGauge2 = new Gauge({
     minValue: 20,
@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Generate a random reading every 3 seconds
   setInterval(function() {
-      powerGauge.update(Math.random()*1000);
-      powerGauge2.update(Math.random()*30+20);
+    powerGauge.update(Math.random()*1000);
+    powerGauge2.update(Math.random()*30+20);
   }, 2 * 1000);
 
 });

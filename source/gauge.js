@@ -31,12 +31,12 @@ class Gauge {
     const pointerTailLength = 5;
     const pointerHeadLength = this._radius() - this.labelInset;
     this.lineData = [
-          [pointerWidth / 2, 0],
-          [0, -pointerHeadLength],
-          [-(pointerWidth / 2), 0],
-          [0, pointerTailLength],
-          [pointerWidth / 2, 0]
-        ];
+        [pointerWidth / 2, 0],
+        [0, -pointerHeadLength],
+        [-(pointerWidth / 2), 0],
+        [0, pointerTailLength],
+        [pointerWidth / 2, 0]
+      ];
 
     this.minAngle = -90,
     this.maxAngle = 90,
@@ -63,19 +63,18 @@ class Gauge {
 
     let ticks = config.majorTicks;
     if (config.scale === 'log') {
-      // ticks = Math.log(config.majorTicks)/Math.LN10;
       ticks = Math.log10(config.majorTicks);
     }
     this.ticks = this.scale.ticks(ticks);
     // console.log(this.ticks, config.majorTicks);
 
     this.threshholds = [
-        config.minValue,
-        config.lowThreshhold,
-        config.highThreshhold,
-        config.maxValue
-      ]
-      .map(d => this.scale(d));
+      config.minValue,
+      config.lowThreshhold,
+      config.highThreshhold,
+      config.maxValue
+    ]
+    .map(d => this.scale(d));
 
     this.arc = d3.arc()
       .innerRadius(this._radius() - this.arcWidth - this.arcPadding)
@@ -103,15 +102,15 @@ class Gauge {
   render(container, newValue) {
 
   const svg = d3.select(container)
-        .append('svg')
-  .attr('class', 'gauge')
-  .attr('width', this.config.size + this.config.margin)
-  .attr('height', this.config.size / 2 + this.config.margin);
+    .append('svg')
+    .attr('class', 'gauge')
+    .attr('width', this.config.size + this.config.margin)
+    .attr('height', this.config.size / 2 + this.config.margin);
 
     // display panel arcs with color scale
   const arcs = svg.append('g')
-  .attr('class', 'arc')
-  .attr('transform', `translate(${this._radius()}, ${this._radius()})`);
+    .attr('class', 'arc')
+    .attr('transform', `translate(${this._radius()}, ${this._radius()})`);
 
     // draw the color arcs
     arcs.selectAll('path')
@@ -123,44 +122,44 @@ class Gauge {
 
     // display panel - labels
   const lg = svg.append('g')
-  .attr('class', 'label')
-  .attr('transform', `translate(${this._radius()},${this._radius()})`);
+    .attr('class', 'label')
+    .attr('transform', `translate(${this._radius()},${this._radius()})`);
 
     // display panel - text
   lg.selectAll('text')
-  .data(this.ticks)
-  .enter()
-      .append('text')
-  .attr('transform', d => {
+    .data(this.ticks)
+    .enter()
+    .append('text')
+    .attr('transform', d => {
           var newAngle = this.minAngle + (this.scale(d) * this.angleRange);
           return `rotate(${newAngle}) translate(0, ${this.labelInset - this._radius()})`;
   })
-  .text(d3.format('1.0f'));
+    .text(d3.format('1.0f'));
 
     // display panel - ticks
-    lg.selectAll('line')
-      .data(this.ticks)
+  lg.selectAll('line')
+    .data(this.ticks)
     .enter()
-      .append('line')
-      .attr('class', 'tickline')
-      .attr('x1', 0)
-      .attr('y1', 0)
-      .attr('x2', 0)
-      .attr('y2', this.arcWidth + this.labelInset)
-      .attr('transform', d => {
-        const newAngle = this.minAngle + (this.scale(d) * this.angleRange);
-        return `rotate(${newAngle}), translate(0, ${this.arcWidth  - this.labelInset - this._radius()})`;
-      })
-      .style('stroke', '#666')
-      .style('stroke-width', '1px');
+    .append('line')
+    .attr('class', 'tickline')
+    .attr('x1', 0)
+    .attr('y1', 0)
+    .attr('x2', 0)
+    .attr('y2', this.arcWidth + this.labelInset)
+    .attr('transform', d => {
+      const newAngle = this.minAngle + (this.scale(d) * this.angleRange);
+      return `rotate(${newAngle}), translate(0, ${this.arcWidth  - this.labelInset - this._radius()})`;
+    })
+    .style('stroke', '#666')
+    .style('stroke-width', '1px');
 
     // display pointer
     const pg = svg.append('g')
-        .data([this.lineData])
-  .attr('class', 'pointer')
-  .attr('transform', `translate(${this._radius()},${this._radius()})`);
+      .data([this.lineData])
+      .attr('class', 'pointer')
+      .attr('transform', `translate(${this._radius()},${this._radius()})`);
 
-  const pointer = pg.append('path')
+    const pointer = pg.append('path')
       .attr('d', d3.line())
       .attr('transform', `rotate(${this.minAngle})`);
 
