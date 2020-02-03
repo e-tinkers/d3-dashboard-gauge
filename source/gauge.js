@@ -63,7 +63,8 @@ class Gauge {
 
     let ticks = config.majorTicks;
     if (config.scale === 'log') {
-      ticks = Math.log(config.majorTicks)/Math.LN10;
+      // ticks = Math.log(config.majorTicks)/Math.LN10;
+      ticks = Math.log10(config.majorTicks);
     }
     this.ticks = this.scale.ticks(ticks);
     // console.log(this.ticks, config.majorTicks);
@@ -101,16 +102,16 @@ class Gauge {
 
   render(container, newValue) {
 
-		const svg = d3.select(container)
+  const svg = d3.select(container)
         .append('svg')
-				.attr('class', 'gauge')
-				.attr('width', this.config.size + this.config.margin)
-				.attr('height', this.config.size / 2 + this.config.margin);
+  .attr('class', 'gauge')
+  .attr('width', this.config.size + this.config.margin)
+  .attr('height', this.config.size / 2 + this.config.margin);
 
     // display panel arcs with color scale
-		const arcs = svg.append('g')
-				.attr('class', 'arc')
-				.attr('transform', `translate(${this._radius()}, ${this._radius()})`);
+  const arcs = svg.append('g')
+  .attr('class', 'arc')
+  .attr('transform', `translate(${this._radius()}, ${this._radius()})`);
 
     // draw the color arcs
     arcs.selectAll('path')
@@ -121,25 +122,25 @@ class Gauge {
   			.attr('d', this.arc);
 
     // display panel - labels
-		const lg = svg.append('g')
-				.attr('class', 'label')
-				.attr('transform', `translate(${this._radius()},${this._radius()})`);
+  const lg = svg.append('g')
+  .attr('class', 'label')
+  .attr('transform', `translate(${this._radius()},${this._radius()})`);
 
     // display panel - text
-		lg.selectAll('text')
-			.data(this.ticks)
-			.enter()
+  lg.selectAll('text')
+  .data(this.ticks)
+  .enter()
       .append('text')
-			.attr('transform', d => {
+  .attr('transform', d => {
           var newAngle = this.minAngle + (this.scale(d) * this.angleRange);
           return `rotate(${newAngle}) translate(0, ${this.labelInset - this._radius()})`;
-			})
-			.text(d3.format('1.0f'));
+  })
+  .text(d3.format('1.0f'));
 
     // display panel - ticks
     lg.selectAll('line')
       .data(this.ticks)
-		  .enter()
+    .enter()
       .append('line')
       .attr('class', 'tickline')
       .attr('x1', 0)
@@ -156,10 +157,10 @@ class Gauge {
     // display pointer
     const pg = svg.append('g')
         .data([this.lineData])
-				.attr('class', 'pointer')
-				.attr('transform', `translate(${this._radius()},${this._radius()})`);
+  .attr('class', 'pointer')
+  .attr('transform', `translate(${this._radius()},${this._radius()})`);
 
-		const pointer = pg.append('path')
+  const pointer = pg.append('path')
       .attr('d', d3.line())
       .attr('transform', `rotate(${this.minAngle})`);
 
@@ -180,7 +181,7 @@ class Gauge {
     this.pointer = pointer;
     this.numberValue = numberValue;
 
-	}
+  }
 
   update(newValue) {
 
