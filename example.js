@@ -6,11 +6,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const powerGauge = new Gauge({
-    minValue: 1,
-    maxValue: 10000,
+    minValue: 5,
+    maxValue: 300000,
     lowThreshhold: 300,
     highThreshhold: 2000,
-    majorTicks:2000,
     scale: 'log',
     displayUnit: 'Log10(x)'
   });

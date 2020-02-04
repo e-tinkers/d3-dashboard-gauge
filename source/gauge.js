@@ -4,10 +4,10 @@ class Gauge {
   constructor(configuration) {
     // default configuration settings
     const config = {
-  		size : 200,
+      size : 200,
       margin : 10,
-  		minValue : 0,
-  		maxValue : 10,
+      minValue : 0,
+      maxValue : 10,
       majorTicks : 5,
       lowThreshhold : 3,
       highThreshhold : 7,
@@ -15,9 +15,9 @@ class Gauge {
       lowThreshholdColor : '#009900',
       defaultColor : '#ffe500',
       highThreshholdColor : '#cc0000',
-  		transitionMs : 1000,
+      transitionMs : 1000,
       displayUnit: 'Value'
-  	};
+    };
 
     this.config = Object.assign(config, configuration);
 
@@ -63,7 +63,7 @@ class Gauge {
 
     let ticks = config.majorTicks;
     if (config.scale === 'log') {
-      ticks = Math.log10(config.majorTicks);
+      ticks = Math.log10(config.maxValue/minValue);
     }
     this.ticks = this.scale.ticks(ticks);
     // console.log(this.ticks, config.majorTicks);
@@ -107,36 +107,36 @@ class Gauge {
     .attr('width', this.config.size + this.config.margin)
     .attr('height', this.config.size / 2 + this.config.margin);
 
-    // display panel arcs with color scale
+  // display panel arcs with color scale
   const arcs = svg.append('g')
     .attr('class', 'arc')
     .attr('transform', `translate(${this._radius()}, ${this._radius()})`);
 
-    // draw the color arcs
-    arcs.selectAll('path')
-  			.data(this.threshholds)
-  			.enter()
-        .append('path')
-  			.attr('fill', d => this.colorScale(d-0.001))
-  			.attr('d', this.arc);
+  // draw the color arcs
+  arcs.selectAll('path')
+    .data(this.threshholds)
+    .enter()
+    .append('path')
+    .attr('fill', d => this.colorScale(d-0.001))
+    .attr('d', this.arc);
 
-    // display panel - labels
+  // display panel - labels
   const lg = svg.append('g')
     .attr('class', 'label')
     .attr('transform', `translate(${this._radius()},${this._radius()})`);
 
-    // display panel - text
+  // display panel - text
   lg.selectAll('text')
     .data(this.ticks)
     .enter()
     .append('text')
     .attr('transform', d => {
-          var newAngle = this.minAngle + (this.scale(d) * this.angleRange);
-          return `rotate(${newAngle}) translate(0, ${this.labelInset - this._radius()})`;
-  })
-    .text(d3.format('1.0f'));
+       var newAngle = this.minAngle + (this.scale(d) * this.angleRange);
+       return `rotate(${newAngle}) translate(0, ${this.labelInset - this._radius()})`;
+     })
+    .text(d3.format('1,.0f'));
 
-    // display panel - ticks
+  // display panel - ticks
   lg.selectAll('line')
     .data(this.ticks)
     .enter()
@@ -153,32 +153,32 @@ class Gauge {
     .style('stroke', '#666')
     .style('stroke-width', '1px');
 
-    // display pointer
-    const pg = svg.append('g')
-      .data([this.lineData])
-      .attr('class', 'pointer')
-      .attr('transform', `translate(${this._radius()},${this._radius()})`);
+  // display pointer
+  const pg = svg.append('g')
+    .data([this.lineData])
+    .attr('class', 'pointer')
+    .attr('transform', `translate(${this._radius()},${this._radius()})`);
 
-    const pointer = pg.append('path')
-      .attr('d', d3.line())
-      .attr('transform', `rotate(${this.minAngle})`);
+  const pointer = pg.append('path')
+    .attr('d', d3.line())
+    .attr('transform', `rotate(${this.minAngle})`);
 
-    // display current value
-    const numberDiv = d3.select(container).append('div')
-      .attr('class', 'number-div')
-      .style('width', `${this.config.size - this.config.margin}px`);
+  // display current value
+  const numberDiv = d3.select(container).append('div')
+    .attr('class', 'number-div')
+    .style('width', `${this.config.size - this.config.margin}px`);
 
-    const numberUnit = numberDiv.append('span')
-      .attr('class', 'number-unit')
-      .text(d => this.config.displayUnit);
+  const numberUnit = numberDiv.append('span')
+    .attr('class', 'number-unit')
+    .text(d => this.config.displayUnit);
 
-    const numberValue = numberDiv.append('span')
-      .data([newValue])
-      .attr('class', 'number-value')
-      .text(d => d === undefined ? 0: d);
+  const numberValue = numberDiv.append('span')
+    .data([newValue])
+    .attr('class', 'number-value')
+    .text(d => d === undefined ? 0: d);
 
-    this.pointer = pointer;
-    this.numberValue = numberValue;
+  this.pointer = pointer;
+  this.numberValue = numberValue;
 
   }
 
