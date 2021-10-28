@@ -122,7 +122,7 @@ You can setup how often the `update()` methold should be called by wrapping it w
 
 #### Re-config the gauge
 
-If for any reason you would need to re-config the guage (for example, re-scale the display panel) dynamically, there is a helper function `setConfig()` allows to passing the new configuration object. Calling 'render()` method is required for the new settings to be taken effect after changing the configuration.
+If for any reason you would need to re-config the guage (for example, re-scale the display panel) dynamically, there is a helper function `setConfig()` allows to passing the new configuration object. Calling `render()` method is required for the new settings to be taken effect after changing the configuration.
 
     tempGauge.setConfig({minValue : 20, maxValue : 50}).render('#gauge');
 
