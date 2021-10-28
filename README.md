@@ -111,7 +111,7 @@ The `render()` menthod creates an SVG object to render the gauge using d3js func
 
 Whenever the data value change, simply call the `update()` to update the value.
 
-    tempGauge.render(newValue);
+    tempGauge.update(newValue);
 
 You can setup how often the `update()` methold should be called by wrapping it within a JavaScript `setInterval` function. Please noted that the time for each update should be longer than the **transitionMs** value you used so that the rendering can be transiting to the newValue before it changing again.
 
