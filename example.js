@@ -5,9 +5,7 @@
 */
 document.addEventListener('DOMContentLoaded', () => {
 
-  // create an Gauge instance with default construct, and set configuration later
-  const powerGauge = new Gauge();
-  powerGuage.setConfig({
+  const powerGauge = new Gauge({
     minValue: 5,
     maxValue: 300000,
     lowThreshhold: 300,
@@ -15,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scale: 'log',
     displayUnit: 'Log10(x)'
   });
-  // create an Guage instance with pass-in configuration object
+
   const powerGauge2 = new Gauge({
     minValue: 10,
     maxValue: 60,

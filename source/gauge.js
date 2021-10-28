@@ -28,10 +28,9 @@ class Gauge {
     this.maxAngle = 90,
     this.angleRange = this.maxAngle - this.minAngle;
 
-    if (configuration !== undefined) {
-      this.config = Object.assign(config, configuration);
-      this._config(configuration);
-    }
+    this.config = Object.assign(config, configuration);
+    this._config();
+
   }
 
   _config() {
@@ -69,7 +68,7 @@ class Gauge {
 
     let ticks = this.config.majorTicks;
     if (this.config.scale === 'log') {
-      ticks = Math.log10(this.config.maxValue/this.minValue);
+      ticks = Math.log10(this.config.maxValue/this.config.minValue);
     }
     this.ticks = this.scale.ticks(ticks);
 
