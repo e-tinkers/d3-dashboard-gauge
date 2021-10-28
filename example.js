@@ -5,7 +5,9 @@
 */
 document.addEventListener('DOMContentLoaded', () => {
 
-  const powerGauge = new Gauge({
+  // create an Gauge instance with default construct, and set configuration later
+  const powerGauge = new Gauge();
+  powerGuage.setConfig({
     minValue: 5,
     maxValue: 300000,
     lowThreshhold: 300,
@@ -13,9 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     scale: 'log',
     displayUnit: 'Log10(x)'
   });
+  // create an Guage instance with pass-in configuration object
   const powerGauge2 = new Gauge({
-    minValue: 20,
-    maxValue: 50,
+    minValue: 10,
+    maxValue: 60,
     lowThreshhold: 28,
     highThreshhold: 42,
     lowThreshholdColor: "#dcdcdc",
@@ -26,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   powerGauge.render("#gauge");
   powerGauge2.render("#gauge2");
+
+  // re-configure the gauge panel
+  powerGauge2.setConfig({minValue: 20, maxValue:50}).render("#gauge2");
 
   // Generate a random reading every 3 seconds
   setInterval(function() {

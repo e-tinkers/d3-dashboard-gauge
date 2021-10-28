@@ -19,12 +19,22 @@ class Gauge {
       displayUnit: 'Value'
     };
 
-    this.config = Object.assign(config, configuration);
-
     // define arc shape and position
     this.arcPadding = 15;
     this.arcWidth = 20;
     this.labelInset = 10;
+
+    this.minAngle = -90,
+    this.maxAngle = 90,
+    this.angleRange = this.maxAngle - this.minAngle;
+
+    if (configuration !== undefined) {
+      this.config = Object.assign(config, configuration);
+      this._config(configuration);
+    }
+  }
+
+  _config() {
 
     // defined pointer shape and size
     const pointerWidth = 6;
@@ -38,41 +48,36 @@ class Gauge {
         [pointerWidth / 2, 0]
       ];
 
-    this.minAngle = -90,
-    this.maxAngle = 90,
-    this.angleRange = this.maxAngle - this.minAngle;
-
-    if (config.scale == 'log') {
+    if (this.config.scale == 'log') {
       this.scale = d3.scaleLog()
         .range([0,1])
-        .domain([config.minValue, config.maxValue]);
+        .domain([this.config.minValue, this.config.maxValue]);
     }
     else {
       this.scale = d3.scaleLinear()
       .range([0,1])
-      .domain([config.minValue, config.maxValue]);
+      .domain([this.config.minValue, this.config.maxValue]);
     }
 
-    const colorDomain = [config.lowThreshhold, config.highThreshhold].map(this.scale);
+    const colorDomain = [this.config.lowThreshhold, this.config.highThreshhold].map(this.scale);
     const colorRange  = [
-      config.lowThreshholdColor,
-      config.defaultColor,
-      config.highThreshholdColor
+      this.config.lowThreshholdColor,
+      this.config.defaultColor,
+      this.config.highThreshholdColor
     ];
     this.colorScale = d3.scaleThreshold().domain(colorDomain).range(colorRange);
 
-    let ticks = config.majorTicks;
-    if (config.scale === 'log') {
-      ticks = Math.log10(config.maxValue/minValue);
+    let ticks = this.config.majorTicks;
+    if (this.config.scale === 'log') {
+      ticks = Math.log10(this.config.maxValue/this.minValue);
     }
     this.ticks = this.scale.ticks(ticks);
-    // console.log(this.ticks, config.majorTicks);
 
     this.threshholds = [
-      config.minValue,
-      config.lowThreshhold,
-      config.highThreshhold,
-      config.maxValue
+      this.config.minValue,
+      this.config.lowThreshhold,
+      this.config.highThreshhold,
+      this.config.maxValue
     ]
     .map(d => this.scale(d));
 
@@ -99,7 +104,17 @@ class Gauge {
 
   }
 
+  setConfig(configuration) {
+    this.config = Object.assign(this.config, configuration);
+    this._config();
+    return this;
+  }
+
   render(container, newValue) {
+
+  // clear gauge if exist
+  d3.select(container).selectAll('svg').remove();
+  d3.select(container).selectAll('div').remove();
 
   const svg = d3.select(container)
     .append('svg')

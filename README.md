@@ -120,6 +120,12 @@ You can setup how often the `update()` methold should be called by wrapping it w
         powerGauge.update(Math.random()*30+20);
     }, 2 * 1000);
 
+#### Re-config the gauge
+
+If for any reason you would need to re-config the guage (for example, re-scale the display panel) dynamically, there is a helper function `setConfig()` allows to passing the new configuration object. Calling 'render()` method is required for the new settings to be taken effect after changing the configuration.
+
+    tempGauge.setConfig({minValue : 20, maxValue : 50}).render('#gauge');
+
 ## Demo
 
 Click on the image above to see the YouTube video demo or click [this link](https://e-tinkers.github.io/d3-dashboard-gauge/) to see the live demonstration.
