@@ -46,7 +46,7 @@ D3 Dashboard Gauge is highly customizable by passing an optional configuration o
     const tempGauge = new Gauge({
       minValue: -20,
       maxValue: 50,
-      lowThresshold: 0,
+      lowThreshhold: 0,
       highThreshhold: 40,
       displayUnit: 'Degree Celcius'
     });
